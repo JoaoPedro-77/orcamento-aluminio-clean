@@ -197,69 +197,6 @@
 </div>
 
 <script src="js/main.js"></script>
-<script>
-  const API_URL = 'http://localhost:3001/api';
-
-  function checkAuth() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      window.location.href = '/login.html';
-      return;
-    }
-  }
-
-  async function checkSubscriptionStatus() {
-    const token = localStorage.getItem('token');
-    const badge = document.getElementById('subscription-status');
-
-    try {
-      const res = await fetch(`${API_URL}/subscription-status`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-
-      if (!res.ok) throw new Error('Erro ao verificar assinatura');
-
-      const data = await res.json();
-      if (data.active) {
-        badge.textContent = '✓ Assinatura Ativa';
-        badge.classList.add('active');
-        badge.classList.remove('inactive');
-      } else {
-        badge.textContent = '⚠ Sem assinatura';
-        badge.classList.add('inactive');
-        badge.classList.remove('active');
-      }
-    } catch (err) {
-      console.error('Erro:', err);
-      badge.textContent = 'Erro ao verificar';
-    }
-  }
-
-  function handleLogout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.href = '/login.html';
-  }
-
-  function openSubscriptionModal() {
-    document.getElementById('subscriptionModal').classList.add('show');
-  }
-
-  function closeSubscriptionModal() {
-    document.getElementById('subscriptionModal').classList.remove('show');
-  }
-
-  function redirectToMercadoPago() {
-    alert('Integração com Mercado Pago para checkout.\n\nConfigure suas credenciais no .env para ativar.');
-  }
-
-  window.addEventListener('load', () => {
-    checkAuth();
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    document.getElementById('user-email').textContent = user.email || 'Usuário';
-    checkSubscriptionStatus();
-  });
-</script>
 </body>
 </html>
 
