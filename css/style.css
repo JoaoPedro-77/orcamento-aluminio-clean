@@ -19,6 +19,7 @@
     --radius: 12px;
     --radius-sm: 8px;
   }
+  
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #1a1a18;
@@ -93,7 +94,7 @@
     margin-bottom: 12px;
   }
   .card-title {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--text2);
     margin-bottom: 12px;
@@ -156,9 +157,10 @@
     padding: 16px;
     margin-top: 4px;
   }
-  .total-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 14px; }
-  .total-row.main { font-size: 17px; font-weight: 500; color: var(--accent-text); border-top: 0.5px solid var(--border); margin-top: 6px; padding-top: 10px; }
-  .total-label { color: var(--text2); }
+  .total-row { 
+    display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 14px; }
+    .total-row.main { font-size: 17px; font-weight: 500; color: var(--accent-text); border-top: 0.5px solid var(--border); margin-top: 6px; padding-top: 10px; }
+    .total-label { color: var(--text2); }
 
   .badge {
     display: inline-block;
@@ -167,8 +169,11 @@
     font-size: 11px;
     font-weight: 500;
   }
-  .badge-info { background: var(--accent-bg); color: var(--accent-text); }
-  .badge-success { background: var(--success-bg); color: var(--success); }
+  .badge-info { 
+    background: var(--accent-bg); color: var(--accent-text); }
+
+  .badge-success { 
+    background: var(--success-bg); color: var(--success); }
 
   .orcamento-salvo {
     background: var(--surface);
