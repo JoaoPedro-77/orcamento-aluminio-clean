@@ -4,7 +4,36 @@
   var orcamentos = [];
   var modalOrcAtual = null;
 
+  function verificarLogin() {
+    var logado = localStorage.getItem('alum_logado');
+    if (logado === 'true') {
+      document.getElementById('loginOverlay').classList.add('hidden');
+    } else {
+      document.getElementById('loginOverlay').classList.remove('hidden');
+    }
+  }
+
+  function fazerLogin() {
+    var user = document.getElementById('loginUser').value;
+    var pass = document.getElementById('loginPass').value;
+    
+    // Simples validação de exemplo: admin / 1234
+    if (user === 'admin' && pass === '1234') {
+      localStorage.setItem('alum_logado', 'true');
+      document.getElementById('loginError').style.display = 'none';
+      document.getElementById('loginOverlay').classList.add('hidden');
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('alum_logado');
+    verificarLogin();
+  }
+
   function init() {
+    verificarLogin();
     config = JSON.parse(localStorage.getItem('alum_config') || '{"empresa":"Portas & Alumínio","margem":0,"desconto":0}');
     orcamentos = JSON.parse(localStorage.getItem('alum_orc') || '[]');
     document.getElementById('cfgEmpresa').value = config.empresa || '';
